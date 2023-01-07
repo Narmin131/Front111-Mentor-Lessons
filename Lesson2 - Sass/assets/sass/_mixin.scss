@@ -1,0 +1,12 @@
+@mixin center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin text {
+    color: blue;
+    font-size: 50px;
+    text-decoration: dotted;
+}
