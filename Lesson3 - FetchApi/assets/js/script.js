@@ -35,7 +35,7 @@ const url = 'https://restcountries.com/v2/all'
 
 async function getData() {
     try {
-        const res = await fetch(url)
+           const res = await fetch(url)
             .then(response => response.json())
             .then(data => console.log(data))
     }
@@ -45,3 +45,29 @@ async function getData() {
 }
 
 getData()
+
+
+
+let myUrl = 'https://jsonplaceholder.typicode.com/users'
+
+
+fetch(myUrl)
+.then( res => res.json())
+.then( data => console.log(data))
+.catch( error => console.log(error))
+
+
+
+const myFunction  = () =>{
+
+    setTimeout(()=>{
+        console.log('Javascript');
+    }, 5000)
+}
+
+myFunction()
+
+
+console.log('Salam');
+
+
