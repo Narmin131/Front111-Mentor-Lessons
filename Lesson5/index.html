@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/sass/style.css">
+</head>
+<body>
+    
+<div>
+    <input type="text" placeholder="Enter your country">
+    <button>Search</button>
+</div>
+
+<div class="myContent">
+
+</div>
+
+
+<div class="randomImage">
+
+</div>
+
+<button class="btn-random">Get Random Image</button>
+
+
+
+</body>
+<script>
+
+const myForm = document.querySelector('form');
+const input = document.querySelector('input')
+const btn = document.querySelector('button')
+const myContent = document.querySelector('.myContent');
+
+const myUrl = 'https://restcountries.com/v3.1/name/{name}?fullText=true'
+
+
+const getCountryInfo = () =>{
+
+    let inputVale = input.value
+    // console.log(inputVale);
+
+    const mainUrl = `https://restcountries.com/v3.1/name/${inputVale}?fullText=true`
+
+    fetch(mainUrl)
+    .then(res => res.json())
+    .then((data)=>{
+        console.log(data);
+        myContent.innerHTML = `
+        <h2>${data[0].name.common}</h2>
+        <img src=${data[0].flags.svg} />
+        `
+    })
+
+}
+
+
+btn.addEventListener('click', getCountryInfo)
+
+
+input.addEventListener('keypress',function(e){
+    if(e.keyCode === 13){
+        btn.click()
+    }
+})
+
+
+const myRandomImageDiv = document.querySelector('.randomImage')
+const randomBtn = document.querySelector('.btn-random')
+
+const randomUrl =' https://aws.random.cat/meow'
+
+randomBtn.addEventListener('click', ()=>{
+
+    fetch(randomUrl)
+    .then(res => res.json())
+    .then ((data)=>{
+        console.log(data);
+        myRandomImageDiv.innerHTML = `
+         <img  src=${data.file} />
+        `
+    })
+
+})
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
