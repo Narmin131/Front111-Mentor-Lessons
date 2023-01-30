@@ -1,31 +1,34 @@
+const form = document.querySelector('form')
+const input = document.querySelector('input')
+const tbody = document.querySelector('tbody')
+const todoItems = localStorage.getItem('todoItem')
+const todo = todoItems ? JSON.parse(todoItems) : [];
 
 
-let darkMode = localStorage.getItem('darkMode');
 
-const toggleBtn = document.querySelector('toggleBtn');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let inputValue = input.value;
+    todo.push(inputValue);
+    localStorage.setItem('todoItem', JSON.stringify(todo))
+    location.reload()
+})
 
-const enableDarkMode = () => {
-    document.body.classList.add('darkMode');
-    localStorage.setItem('darkMode', 'enabled');
-}
+todo.map((data, index) => {
+    tbody.innerHTML += `
+    <tr>
+    <td>${data}</td>
+    <td onclick='del(${index})'>Delete</td>
+    </tr>
+`
+})
 
-const disableDarkMode = () => {
-    document.body.classList.remove('darkMode');
-    localStorage.setItem('darkMode', null)
-}
+// const del = (e) =>{
 
-if (darkMode === 'enabled') {
-    enableDarkMode()
-}
+//     let filteredArray = todo.filter((data, index)=>{
+//           return index !== e;
+//     })
 
-const changeMode = () => {
-    let darkMode = localStorage.getItem("darkMode");
-
-    if (darkMode !== 'enabled') {
-        enableDarkMode()
-    }
-    else {
-        disableDarkMode()
-    }
-}
-
+//     localStorage.setItem('todoItem', JSON.stringify(filteredArray))
+//     location.reload()
+// }
